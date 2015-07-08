@@ -2,26 +2,22 @@
 import Model from 'ampersand-model';
 import dispatcher from './../../dispatcher';
 
-class TrackModel extends Model {
+export default Model.extend({
 
-  get props () {
+  props: {
 
-    return {
-
-      title: 'string'
-    }
-  }
-
-  constructor () { super(); }
+    title: 'string',
+    id: 'number',
+    duration: 'number',
+    genre: 'string',
+    streamUrl: 'string'
+  },
 
   parse (data) {
 
-    console.log('CREATING');
+    data.streamUrl = data.stream_url;
+    delete data.stream_url;
 
-    this.title = data.title;
-
-    console.log(this.title);
+    return data;
   }
-}
-
-export default TrackModel;
+});

@@ -9,6 +9,7 @@
   "author": "Zane Adickes",
   "license": "ISC",
   "dependencies": {
+    "ampersand-app": "^1.0.4",
     "ampersand-collection": "^1.4.5",
     "ampersand-model": "^5.0.3",
     "ampersand-rest-collection": "^4.0.0",

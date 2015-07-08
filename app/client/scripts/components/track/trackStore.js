@@ -1,39 +1,36 @@
-
+import React from 'react';
 import RestCollection from 'ampersand-rest-collection';
 import TrackModel from './trackModel';
+import TrackView from './trackView';
+import TrackList from './trackListView';
 import dispatcher from './../../dispatcher';
 
-class TrackStore extends RestCollection {
+const TrackStore = RestCollection.extend({
 
-  get model () { return TrackModel; }
+  model: TrackModel,
 
-  get url () { return '/explore'; }
-
-  constructor () { super(); }
+  url: '/explore',
 
   initialize () {
 
     dispatcher.register(this, this.dispatchCallback);
-  }
 
-  dispatchCallback (payload) {
+    this.on('sort', function () {
 
-  }
-
-  hasChanged () {
-
-    console.log('changed')
-  }
+      React.render(
+        <TrackList tracks={this.models} />,
+        document.getElementById('heart')
+      )
+    })
+  },
 
   parse (data) {
 
     data = JSON.parse(data);
 
-    console.log(data);
-
     return data.tracks;
   }
-}
+})
 
 var trackStore = new TrackStore();
 
