@@ -1,5 +1,6 @@
 
 import React from 'react';
+import dispatcher, {ACTIONS} from '../../dispatcher';
 
 export default React.createClass({
 
@@ -8,15 +9,19 @@ export default React.createClass({
   render () {
 
     return (
-      <li onClick={this.play}>
-        <h3>{this.props.title}</h3>
-        <button>play</button>
+      <li>
+        <h3>{this.props.track.title}</h3>
+        <button onClick={this.handlePlay}>play</button>
       </li>
     )
   },
 
-  play () {
+  handlePlay () {
 
-    console.log('playing: ' + this.props.title);
+    dispatcher.dispatch({
+
+      action: ACTIONS.PLAY,
+      track: this.props.track
+    })
   }
 })

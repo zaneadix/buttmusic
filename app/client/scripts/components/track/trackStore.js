@@ -2,8 +2,8 @@ import React from 'react';
 import RestCollection from 'ampersand-rest-collection';
 import TrackModel from './trackModel';
 import TrackView from './trackView';
-import TrackList from './trackListView';
-import dispatcher from './../../dispatcher';
+import TrackList from './trackStoreView';
+import dispatcher, {ACTIONS} from './../../dispatcher';
 
 const TrackStore = RestCollection.extend({
 
@@ -13,7 +13,9 @@ const TrackStore = RestCollection.extend({
 
   initialize () {
 
-    dispatcher.register(this, this.dispatchCallback);
+    console.log(dispatcher);
+
+    dispatcher.register(this.dispatchCallback);
 
     this.on('sort', function () {
 
@@ -21,6 +23,7 @@ const TrackStore = RestCollection.extend({
         <TrackList tracks={this.models} />,
         document.getElementById('heart')
       )
+
     })
   },
 
@@ -29,6 +32,18 @@ const TrackStore = RestCollection.extend({
     data = JSON.parse(data);
 
     return data.tracks;
+  },
+
+  dispatchCallback (payload) {
+
+    console.log(ACTIONS.PLAY === payload.action);
+
+    switch (payload.action) {
+
+      case ACTIONS.PLAY:
+
+        payload.track.play()
+    }
   }
 })
 

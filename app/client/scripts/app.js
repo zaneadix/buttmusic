@@ -11,8 +11,6 @@ app.extend({
 
     trackStore.fetch();
 
-    console.log(router);
-
     router.history.start();
   }
 

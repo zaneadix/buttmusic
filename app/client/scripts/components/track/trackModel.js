@@ -19,5 +19,10 @@ export default Model.extend({
     delete data.stream_url;
 
     return data;
+  },
+
+  play () {
+
+    console.log('PANTS');
   }
 });

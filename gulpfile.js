@@ -14,7 +14,7 @@ var src = {
 
   client: {
     scripts: {
-      entry: 'app/client/scripts/client.js',
+      entry: 'app/client/scripts/app.js',
       all: 'app/client/scripts/**/*.js'
     },
     html: "app/client/**/*.html"

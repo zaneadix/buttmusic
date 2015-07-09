@@ -4,13 +4,13 @@ import TrackView from './trackView';
 
 export default React.createClass({
 
-  displayName: 'TrackList',
+  displayName: 'TrackStore',
 
   render () {
 
     var tracks = this.props.tracks.map(function (track) {
       return (
-        <TrackView key={track.id} title={track.title} />
+        <TrackView key={track.id} track={track} />
       );
     });
 
